@@ -8,7 +8,8 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div id='App'></div>
+      <div id='app'>
+      </div>
     )
   }
 }
