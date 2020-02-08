@@ -33,7 +33,11 @@ const imdbGenres = [
 class App extends React.Component {
   constructor(props) {
     super(props);
-  }
+    this.state = {
+      genre: ''
+    }
+  };
+
   render() {
 
     // Get array of option elements for each genre
