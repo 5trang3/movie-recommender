@@ -35,9 +35,16 @@ class App extends React.Component {
     super(props);
     this.state = {
       genre: ''
-    }
+    };
+    this.handleGenreChange = this.handleGenreChange.bind(this);
   };
 
+  // Event handler for changing genres:
+  handleGenreChange(event) {
+    this.setState({
+      genre: event.target.value
+    });
+  }
   render() {
 
     // Get array of option elements for each genre
@@ -49,7 +56,7 @@ class App extends React.Component {
       <div id='app'>
         <div id='genreDropdownContainer'>
           <label id='genreDropdownLabel'>Choose a Genre:</label>
-          <select id='genreDropdown'>
+          <select id='genreDropdown' value={this.state.genre} onChange={this.handleGenreChange}>
             {genreOptions}
           </select>
         </div>
