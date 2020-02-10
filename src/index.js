@@ -30,6 +30,15 @@ const imdbGenres = [
   'Western'
 ]
 
+// Array of row headings:
+const rowHeadings = [
+  'Genre classics',
+  'Must watch for all movie lovers',
+  'Must watch for all genre fans',
+  'Meh',
+  'Don\'t waste your time',
+  'Burn it alive!'
+]
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -52,6 +61,11 @@ class App extends React.Component {
       return <option value={genre}>{genre}</option>
     })
 
+    // Create array of movie rows:
+    const movieRows = this.props.rowHeadings.map(function(rowHeading, index) {
+      return <MovieRow id={'movieRow-' + index} rowHeading={rowHeading}/>
+    })
+
     return (
       <div id='app'>
         <div id='genreDropdownContainer'>
@@ -60,9 +74,23 @@ class App extends React.Component {
             {genreOptions}
           </select>
         </div>
+        {movieRows}
       </div>
     )
   }
 }
 
-ReactDOM.render(<App imdbGenres={imdbGenres}/>, document.getElementById('root'))
+class MovieRow extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div id={this.props.id}>
+        <h2>{this.props.rowHeading}</h2>
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(<App imdbGenres={imdbGenres} rowHeadings={rowHeadings}/>, document.getElementById('root'))
