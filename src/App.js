@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './App.css';
 
 // Array of IMDB genres:
-const imdbGenres = [
+export const imdbGenres = [
   'Action',
   'Adventure',
   'Animation',
@@ -31,7 +31,7 @@ const imdbGenres = [
 ]
 
 // Array of row headings:
-const rowHeadings = [
+export const rowHeadings = [
   'Genre classics',
   'Must watch for all movie lovers',
   'Must watch for all genre fans',
@@ -39,7 +39,7 @@ const rowHeadings = [
   'Don\'t waste your time',
   'Burn it alive!'
 ]
-class App extends React.Component {
+export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -93,4 +93,4 @@ class MovieRow extends React.Component {
   }
 }
 
-ReactDOM.render(<App imdbGenres={imdbGenres} rowHeadings={rowHeadings}/>, document.getElementById('root'))
+// ReactDOM.render(<App imdbGenres={imdbGenres} rowHeadings={rowHeadings}/>, document.getElementById('root'))
