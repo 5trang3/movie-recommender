@@ -1,0 +1,33 @@
+#options {
+  display: flex;
+}
+
+#genreDropdownContainer {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#yearSelectionContainer {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#genreDropdownLabel {
+  margin-right: 5px;
+}
+
+#genreDropdown {
+  margin-right: 5px;
+}
+
+#yearSelectionLabel {
+  margin-right: 5px;
+}
+
+.react-calendar {
+  width: 50%;
+}
