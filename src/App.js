@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-import Calendar from 'react-calendar'
+import Calendar from 'react-calendar';
+
+const superagent = require('superagent')
 
 // Array of IMDB genres:
 export const imdbGenres = [
@@ -45,11 +47,12 @@ export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      genre: '',
-      year: ''
+      genre: 'Action',
+      year: new Date('2019')
     };
     this.handleGenreChange = this.handleGenreChange.bind(this);
     this.handleYearChange = this.handleYearChange.bind(this);
+    this.getMovies = this.getMovies.bind(this);
   };
 
   // Event handler for changing genres:
@@ -67,6 +70,13 @@ export class App extends React.Component {
       genre: state.genre,
       year: date
     }))
+  }
+
+  // Function to get relevant movies:
+  getMovies(genre, year) {
+    superagent.get('http://127.0.0.1:4000/api/movies?year=' + year.getFullYear().toString() + '&genre=' + genre)
+              .then(res => res.body)
+              .catch(err => console.error(err))
   }
 
   render() {
@@ -96,7 +106,6 @@ export class App extends React.Component {
           </div>
         </div>
         {movieRows}
-        <div>{this.state.year.toString()}</div>
       </div>
     )
   }
