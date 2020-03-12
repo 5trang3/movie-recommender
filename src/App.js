@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
+import Calendar from 'react-calendar'
 
 // Array of IMDB genres:
 export const imdbGenres = [
@@ -39,21 +40,35 @@ export const rowHeadings = [
   'Don\'t waste your time',
   'Burn it alive!'
 ]
+
 export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      genre: ''
+      genre: '',
+      year: ''
     };
     this.handleGenreChange = this.handleGenreChange.bind(this);
+    this.handleYearChange = this.handleYearChange.bind(this);
   };
 
   // Event handler for changing genres:
   handleGenreChange(event) {
-    this.setState({
-      genre: event.target.value
-    });
+    const genre = event.target.value;
+    this.setState(state => ({
+      genre: genre,
+      year: state.year
+    }))
   }
+
+  // Event handler for changing years:
+  handleYearChange(date) {
+    this.setState(state => ({
+      genre: state.genre,
+      year: date
+    }))
+  }
+
   render() {
 
     // Get array of option elements for each genre
@@ -68,13 +83,20 @@ export class App extends React.Component {
 
     return (
       <div id='app'>
-        <div id='genreDropdownContainer'>
-          <label id='genreDropdownLabel'>Choose a Genre:</label>
-          <select id='genreDropdown' value={this.state.genre} onChange={this.handleGenreChange}>
-            {genreOptions}
-          </select>
+        <div id='options'>
+          <div id='genreDropdownContainer'>
+            <label id='genreDropdownLabel'>Choose a Genre:</label>
+            <select id='genreDropdown' value={this.state.genre} onChange={this.handleGenreChange}>
+              {genreOptions}
+            </select>
+          </div>
+          <div id='yearSelectionContainer'>
+            <p id='yearSelectionLabel'>Choose a Year:</p>
+            <Calendar view='decade' maxDate={ new Date('2020') }  minDate={ new Date('1915') } className='calendar' value={ this.state.year } onClickYear={ this.handleYearChange }/>
+          </div>
         </div>
         {movieRows}
+        <div>{this.state.year.toString()}</div>
       </div>
     )
   }
@@ -92,5 +114,3 @@ class MovieRow extends React.Component {
     )
   }
 }
-
-// ReactDOM.render(<App imdbGenres={imdbGenres} rowHeadings={rowHeadings}/>, document.getElementById('root'))
