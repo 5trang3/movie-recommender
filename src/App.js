@@ -52,31 +52,21 @@ export class App extends React.Component {
     };
     this.handleGenreChange = this.handleGenreChange.bind(this);
     this.handleYearChange = this.handleYearChange.bind(this);
-    this.getMovies = this.getMovies.bind(this);
   };
 
   // Event handler for changing genres:
   handleGenreChange(event) {
     const genre = event.target.value;
-    this.setState(state => ({
-      genre: genre,
-      year: state.year
-    }))
+    this.setState({
+      genre: genre
+    })
   }
 
   // Event handler for changing years:
   handleYearChange(date) {
-    this.setState(state => ({
-      genre: state.genre,
+    this.setState({
       year: date
-    }))
-  }
-
-  // Function to get relevant movies:
-  getMovies(genre, year) {
-    superagent.get('http://127.0.0.1:4000/api/movies?year=' + year.getFullYear().toString() + '&genre=' + genre)
-              .then(res => res.body)
-              .catch(err => console.error(err))
+    })
   }
 
   render() {
