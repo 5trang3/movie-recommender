@@ -48,11 +48,24 @@ export class App extends React.Component {
     super(props);
     this.state = {
       genre: 'Action',
-      year: new Date('2019')
+      year: new Date('2019'),
+      movies: []
     };
     this.handleGenreChange = this.handleGenreChange.bind(this);
     this.handleYearChange = this.handleYearChange.bind(this);
   };
+
+  componentDidMount() {
+    const year = this.state.year;
+    const genre = this.state.genre;
+    superagent.get('http://127.0.0.1:4000/api/movies?year=' + year.getFullYear().toString() + '&genre=' + genre)
+              .then((res) => {
+                this.setState({
+                  movies: res.body
+                })
+              })
+              .catch(err => console.error(err))
+  }
 
   // Event handler for changing genres:
   handleGenreChange(event) {
