@@ -100,8 +100,25 @@ export class App extends React.Component {
     })
 
     // Create array of movie rows:
-    const movieRows = this.props.rowHeadings.map(function(rowHeading, index) {
-      return <MovieRow id={'movieRow-' + index} rowHeading={rowHeading}/>
+    const movieRows = this.props.rowHeadings.map((rowHeading, index) => {
+      const movies = this.state.movies.filter((movie) => {
+        const withinRange = (minRating, maxRating) => {
+          for (const scoreObj of movie.genreAdjustedScores) {
+            if (scoreObj[this.state.genre]) {
+              return (scoreObj[this.state.genre] <= maxRating && scoreObj[this.state.genre] >= minRating)
+            }
+          }
+        }
+        switch (index) {
+          case 0: return withinRange(9.0, 10.0)
+          case 1: return withinRange(8.0, 8.9)
+          case 2: return withinRange(7.0, 7.9)
+          case 3: return withinRange(5.0, 6.9)
+          case 4: return withinRange(3.0, 4.9)
+          case 5: return withinRange(0, 2.9)
+        }
+      })
+      return <MovieRow id={'movieRow-' + index} rowHeading={rowHeading} movies={movies}/>
     })
 
     return (
