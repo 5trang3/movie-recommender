@@ -48,7 +48,7 @@ export class App extends React.Component {
     super(props);
     this.state = {
       genre: 'Action',
-      year: new Date('2019'),
+      year: new Date('2020'),
       movies: []
     };
     this.handleGenreChange = this.handleGenreChange.bind(this);
