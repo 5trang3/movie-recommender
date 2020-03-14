@@ -53,9 +53,19 @@ export class App extends React.Component {
     };
     this.handleGenreChange = this.handleGenreChange.bind(this);
     this.handleYearChange = this.handleYearChange.bind(this);
+    this.fetchMovies = this.fetchMovies.bind(this);
   };
 
   componentDidMount() {
+    this.fetchMovies()
+  }
+
+  componentDidUpdate() {
+    this.fetchMovies()
+  }
+
+  // Method to fetch movies
+  fetchMovies() {
     const year = this.state.year;
     const genre = this.state.genre;
     superagent.get('http://127.0.0.1:4000/api/movies?year=' + year.getFullYear().toString() + '&genre=' + genre)
