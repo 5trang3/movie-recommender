@@ -118,6 +118,21 @@ export class App extends React.Component {
           case 5: return withinRange(0, 2.9)
         }
       })
+        movies.sort((movie1, movie2) => {
+          let score1;
+          let score2;
+          for (const scoreObj of movie1.genreAdjustedScores) {
+            if (scoreObj[this.state.genre]) {
+              score1 = scoreObj[this.state.genre]
+            }
+          }
+          for (const scoreObj of movie2.genreAdjustedScores) {
+            if (scoreObj[this.state.genre]) {
+              score2 = scoreObj[this.state.genre]
+            }
+          }
+          return score2 - score1
+        })
       return <MovieRow id={'movieRow-' + index} rowHeading={rowHeading} movies={movies} genre={this.state.genre}/>
     })
 
