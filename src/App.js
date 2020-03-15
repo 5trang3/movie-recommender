@@ -118,7 +118,7 @@ export class App extends React.Component {
           case 5: return withinRange(0, 2.9)
         }
       })
-      return <MovieRow id={'movieRow-' + index} rowHeading={rowHeading} movies={movies}/>
+      return <MovieRow id={'movieRow-' + index} rowHeading={rowHeading} movies={movies} genre={this.state.genre}/>
     })
 
     return (
@@ -146,9 +146,12 @@ class MovieRow extends React.Component {
     super(props);
   }
   render() {
+    const Movies = this.props.movies.map((movie) => <Movie movie={movie} genre={this.props.genre}></Movie>)
+
     return (
       <div id={this.props.id}>
         <h2>{this.props.rowHeading}</h2>
+        {Movies}
       </div>
     )
   }
@@ -159,8 +162,18 @@ class Movie extends React.Component {
     super(props);
   }
   render() {
+    let genreAdjustedScore;
+    for (const scoreObj of this.props.movie.genreAdjustedScores) {
+      if (scoreObj[this.props.genre]) {
+        genreAdjustedScore = scoreObj[this.props.genre]
+      }
+    }
     return(
-      <div class='Movie'></div>
+      <div class='Movie'>
+        <h3>{this.props.movie.title}</h3>
+        <div>{this.props.movie.rating}</div>
+        <div>{genreAdjustedScore}</div>
+      </div>
     )
   }
 }
