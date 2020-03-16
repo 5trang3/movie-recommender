@@ -49,7 +49,7 @@ export class App extends React.Component {
     this.state = {
       genre: 'Action',
       year: new Date('2020'),
-      movies: []
+      movies: [[],[],[],[],[],[]]
     };
     this.handleGenreChange = this.handleGenreChange.bind(this);
     this.handleYearChange = this.handleYearChange.bind(this);
@@ -101,39 +101,8 @@ export class App extends React.Component {
 
     // Create array of movie rows:
     const movieRows = this.props.rowHeadings.map((rowHeading, index) => {
-      const movies = this.state.movies.filter((movie) => {
-        const withinRange = (minRating, maxRating) => {
-          for (const scoreObj of movie.genreAdjustedScores) {
-            if (scoreObj[this.state.genre]) {
-              return (scoreObj[this.state.genre] <= maxRating && scoreObj[this.state.genre] >= minRating)
-            }
-          }
-        }
-        switch (index) {
-          case 0: return withinRange(9.0, 10.0)
-          case 1: return withinRange(8.0, 8.9)
-          case 2: return withinRange(7.0, 7.9)
-          case 3: return withinRange(5.0, 6.9)
-          case 4: return withinRange(3.0, 4.9)
-          case 5: return withinRange(0, 2.9)
-        }
-      })
-        movies.sort((movie1, movie2) => {
-          let score1;
-          let score2;
-          for (const scoreObj of movie1.genreAdjustedScores) {
-            if (scoreObj[this.state.genre]) {
-              score1 = scoreObj[this.state.genre]
-            }
-          }
-          for (const scoreObj of movie2.genreAdjustedScores) {
-            if (scoreObj[this.state.genre]) {
-              score2 = scoreObj[this.state.genre]
-            }
-          }
-          return score2 - score1
-        })
-      return <MovieRow id={'movieRow-' + index} rowHeading={rowHeading} movies={movies} genre={this.state.genre}/>
+      console.log(this.state)
+      return <MovieRow id={'movieRow-' + index} rowHeading={rowHeading} movies={this.state.movies[index]} genre={this.state.genre}/>
     })
 
     return (

@@ -30,13 +30,47 @@ const Movie = mongoose.model('Movie', new mongoose.Schema({
 app.get('/api/movies', function(req, res) {
   const year = new Date(req.query.year);
   const genre = req.query.genre;
-  const filter = {};
+  const filter = { language: 'en'};
   year ? filter.year = year : res.send('Missing year information');
   genre ? filter.genres = genre : res.send('Missing genre information');
   Movie.find(filter)
        .then(function(movies) {
          if (movies.length === 0) { res.send('No movies found') }
-         else { res.json(movies) }
+         else {
+           let movieArr = [[],[],[],[],[],[]]
+           for (const movie of movies) {
+             let rating;
+             for (const scoreObj of movie.genreAdjustedScores) {
+               if (scoreObj[genre]) {
+                 rating = scoreObj[genre];
+               }
+             }
+               if (rating <= 10 && rating >= 9) { movieArr[0].push(movie); }
+               else if (rating < 9 && rating >= 8) { movieArr[1].push(movie); }
+               else if (rating < 8 && rating >= 7) { movieArr[2].push(movie); }
+               else if (rating < 7 && rating >= 5) { movieArr[3].push(movie); }
+               else if (rating < 5 && rating >= 3) { movieArr[4].push(movie); }
+               else { movieArr[5].push(movie) }
+           }
+           for (const categoryArr of movieArr) {
+             categoryArr.sort((movie1, movie2) => {
+               let score1;
+               let score2;
+               for (const scoreObj of movie1.genreAdjustedScores) {
+                 if (scoreObj[genre]) {
+                   score1 = scoreObj[genre]
+                 }
+               }
+               for (const scoreObj of movie2.genreAdjustedScores) {
+                 if (scoreObj[genre]) {
+                   score2 = scoreObj[genre]
+                 }
+               }
+               return score2 - score1
+             })
+           }
+           res.json(movieArr)
+         }
        })
        .catch(err => console.error(err))
 })
