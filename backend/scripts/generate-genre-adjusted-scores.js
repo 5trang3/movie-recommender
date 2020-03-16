@@ -50,11 +50,18 @@ for (const genre of imdbGenres) {
   Movie.find({ genres: genre, language: 'en' })
        .then(function(movies) {
          const ratings = movies.map(movie => movie.rating);
+         const avgRating = d3.mean(ratings);
          const maxRating = d3.max(ratings);
          const minRating = d3.min(ratings);
-         const scale = d3.scaleLinear().domain([minRating, maxRating]).range([0, 10]);
+         const scaleLower = d3.scaleLinear().domain([minRating, avgRating]).range([0, 5]);
+         const scaleUpper = d3.scaleLinear().domain([avgRating, maxRating]).range([5, 10]);
          for (const movie of movies) {
-           movie.genreAdjustedScores.push({ [genre]: Math.round((scale(movie.rating) * 10)) / 10 });
+           if (movie.rating <= avgRating) {
+             movie.genreAdjustedScores.push({ [genre]: Math.round((scaleLower(movie.rating) * 10)) / 10 });
+           }
+           else {
+             movie.genreAdjustedScores.push({ [genre]: Math.round((scaleUpper(movie.rating) * 10)) / 10 });
+           }
            movie.save()
                 .then(updatedMovie => console.log([updatedMovie.id, updatedMovie.genreAdjustedScores]))
                 .catch(err => console.error(err))
