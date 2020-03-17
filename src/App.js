@@ -134,7 +134,7 @@ class MovieRow extends React.Component {
 
     return (
       <div>
-        <h2>{this.props.rowHeading}</h2>
+        <h2 class='rowHeading'>{this.props.rowHeading}</h2>
         <div id={this.props.id} class='movieRow'>
           {Movies}
         </div>
@@ -155,11 +155,11 @@ class Movie extends React.Component {
       }
     }
     return(
-      <div class='Movie'>
+      <div class='movie'>
         <img src={this.props.movie.posterPath}/>
         <p>{this.props.movie.title}</p>
-        <div>IMDB Rating: <div class='imdbRating score'>{this.props.movie.rating}</div></div>
-        <div>Genre Score: <div class='genreScore score'>{genreAdjustedScore}</div></div>
+        <div class='imdbRating score'>{this.props.movie.rating}</div>
+        <div class='genreScore score'>{genreAdjustedScore}</div>
       </div>
     )
   }

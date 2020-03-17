@@ -1,5 +1,6 @@
 html {
   font-family: 'IBM Plex Serif', serif;
+  background-color: #CCF0E1;
 }
 
 #options {
@@ -38,7 +39,11 @@ html {
 
 .movieRow {
   display: grid;
-  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-columns: repeat(5, minmax(200px, 20%));
+  border-top: 5px solid #F8FAB8;
+  grid-row-gap: 20px;
+  text-align: center;
+  padding-top: 20px;
 }
 
 .imdbRating {
@@ -50,7 +55,22 @@ html {
 }
 
 .score {
-  display: inline;
+  display: inline-block;
   border: 1px solid black;
   padding: 3px 1px;
+  width: 24px;
+  height: 24px;
+  margin: 0px 3px
+}
+
+.movie > p {
+  height: 40px
+}
+
+.rowHeading {
+  text-align: center
+}
+
+h2 {
+  text-decoration: underline;
 }
