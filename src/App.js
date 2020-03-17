@@ -60,8 +60,10 @@ export class App extends React.Component {
     this.fetchMovies()
   }
 
-  componentDidUpdate() {
-    this.fetchMovies()
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.year !== this.state.year || prevState.genre !== this.state.genre) {
+      this.fetchMovies()
+    }
   }
 
   // Method to fetch movies
@@ -93,7 +95,6 @@ export class App extends React.Component {
   }
 
   render() {
-
     // Get array of option elements for each genre
     const genreOptions = this.props.imdbGenres.map(function(genre) {
       return <option value={genre}>{genre}</option>
@@ -101,7 +102,6 @@ export class App extends React.Component {
 
     // Create array of movie rows:
     const movieRows = this.props.rowHeadings.map((rowHeading, index) => {
-      console.log(this.state)
       return <MovieRow id={'movieRow-' + index} rowHeading={rowHeading} movies={this.state.movies[index]} genre={this.state.genre}/>
     })
 
