@@ -154,6 +154,7 @@ class Movie extends React.Component {
     }
     return(
       <div class='Movie'>
+        <img src={this.props.movie.posterPath}/>
         <h3>{this.props.movie.title}</h3>
         <div>{this.props.movie.rating}</div>
         <div>{genreAdjustedScore}</div>
