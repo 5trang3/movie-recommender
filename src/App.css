@@ -1,3 +1,7 @@
+html {
+  font-family: 'IBM Plex Serif', serif;
+}
+
 #options {
   display: flex;
 }
@@ -30,4 +34,23 @@
 
 .react-calendar {
   width: 50%;
+}
+
+.movieRow {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+.imdbRating {
+  background-color: #F5C518;
+}
+
+.genreScore {
+  background-color: #F76A8C;
+}
+
+.score {
+  display: inline;
+  border: 1px solid black;
+  padding: 3px 1px;
 }

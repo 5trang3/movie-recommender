@@ -133,9 +133,11 @@ class MovieRow extends React.Component {
     const Movies = this.props.movies.map((movie) => <Movie movie={movie} genre={this.props.genre}></Movie>)
 
     return (
-      <div id={this.props.id}>
+      <div>
         <h2>{this.props.rowHeading}</h2>
-        {Movies}
+        <div id={this.props.id} class='movieRow'>
+          {Movies}
+        </div>
       </div>
     )
   }
@@ -155,9 +157,9 @@ class Movie extends React.Component {
     return(
       <div class='Movie'>
         <img src={this.props.movie.posterPath}/>
-        <h3>{this.props.movie.title}</h3>
-        <div>{this.props.movie.rating}</div>
-        <div>{genreAdjustedScore}</div>
+        <p>{this.props.movie.title}</p>
+        <div>IMDB Rating: <div class='imdbRating score'>{this.props.movie.rating}</div></div>
+        <div>Genre Score: <div class='genreScore score'>{genreAdjustedScore}</div></div>
       </div>
     )
   }
