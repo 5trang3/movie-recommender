@@ -5,51 +5,13 @@ import Calendar from 'react-calendar';
 
 const superagent = require('superagent')
 
-// Array of IMDB genres:
-export const imdbGenres = [
-  'Action',
-  'Adventure',
-  'Animation',
-  'Biography',
-  'Comedy',
-  'Crime',
-  'Documentary',
-  'Drama',
-  'Family',
-  'Fantasy',
-  'Film Noir',
-  'History',
-  'Horror',
-  'Music',
-  'Musical',
-  'Mystery',
-  'Romance',
-  'Sci-Fi',
-  'Short',
-  'Sport',
-  'Superhero',
-  'Thriller',
-  'War',
-  'Western'
-]
-
-// Array of row headings:
-export const rowHeadings = [
-  'Genre classics',
-  'Must watch for all movie lovers',
-  'Must watch for all genre fans',
-  'Meh',
-  'Don\'t waste your time',
-  'Burn it alive!'
-]
-
 export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       genre: 'Action',
       year: new Date('2020'),
-      movies: [[],[],[],[],[],[]]
+      movies: [[],[],[],[],[]]
     };
     this.handleGenreChange = this.handleGenreChange.bind(this);
     this.handleYearChange = this.handleYearChange.bind(this);
@@ -102,7 +64,7 @@ export class App extends React.Component {
 
     // Create array of movie rows:
     const movieRows = this.props.rowHeadings.map((rowHeading, index) => {
-      return <MovieRow id={'movieRow-' + index} rowHeading={rowHeading} movies={this.state.movies[index]} genre={this.state.genre}/>
+      return <MovieRow id={'movieRow-' + index} rowHeading={rowHeading} subHeading={this.props.subHeadings[index]} movies={this.state.movies[index]} genre={this.state.genre}/>
     })
 
     return (
@@ -135,6 +97,7 @@ class MovieRow extends React.Component {
     return (
       <div>
         <h2 class='rowHeading'>{this.props.rowHeading}</h2>
+        <p class='subHeading'>{this.props.subHeading}</p>
         <div id={this.props.id} class='movieRow'>
           {Movies}
         </div>

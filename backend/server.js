@@ -37,7 +37,7 @@ app.get('/api/movies', function(req, res) {
        .then(function(movies) {
          if (movies.length === 0) { res.send('No movies found') }
          else {
-           let movieArr = [[],[],[],[],[],[]]
+           let movieArr = [[],[],[],[],[]]
            for (const movie of movies) {
              let rating;
              for (const scoreObj of movie.genreAdjustedScores) {
@@ -46,11 +46,10 @@ app.get('/api/movies', function(req, res) {
                }
              }
                if (rating <= 10 && rating >= 9) { movieArr[0].push(movie); }
-               else if (rating < 9 && rating >= 8) { movieArr[1].push(movie); }
-               else if (rating < 8 && rating >= 7) { movieArr[2].push(movie); }
-               else if (rating < 7 && rating >= 5) { movieArr[3].push(movie); }
-               else if (rating < 5 && rating >= 3) { movieArr[4].push(movie); }
-               else { movieArr[5].push(movie) }
+               else if (rating < 9 && rating >= 7) { movieArr[1].push(movie); }
+               else if (rating < 7 && rating >= 5) { movieArr[2].push(movie); }
+               else if (rating < 5 && rating >= 3) { movieArr[3].push(movie); }
+               else { movieArr[4].push(movie) }
            }
            for (const categoryArr of movieArr) {
              categoryArr.sort((movie1, movie2) => {
