@@ -72,7 +72,7 @@ export class App extends React.Component {
         <div id='options'>
           <div id='genreDropdownContainer'>
             <label id='genreDropdownLabel'>Choose a Genre:</label>
-            <select id='genreDropdown' value={this.state.genre} onChange={this.handleGenreChange}>
+            <select id='genreDropdown' value={this.state.genre} onChange={this.handleGenreChange} class='select-css'>
               {genreOptions}
             </select>
           </div>
