@@ -43,6 +43,7 @@ html {
 
 .genreScore {
   background-color: #F76A8C;
+  text-align: center;
 }
 
 .score {
@@ -139,4 +140,8 @@ h2 {
 
 .image:hover {
   border: 5px solid #F76A8C
+}
+
+#legend {
+  display: inline-block;
 }

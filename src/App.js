@@ -80,6 +80,14 @@ export class App extends React.Component {
             <label id='yearSelectionLabel'>Choose a Year:</label>
             <Calendar view='decade' maxDate={ new Date('2020') }  minDate={ new Date('1915') } className='calendar' value={ this.state.year } onClickYear={ this.handleYearChange }/>
           </div>
+          <div id='legend'>
+            <p>
+              The ratings in pink <div class='genreScore score'>S</div> are genre adjusted scores.
+              Ratings on IMDB are higher on average for some genres compared to others. Often this
+              is a reflection of reviewer biases against certain genres. This adjusted score normalizes
+              the data for these biases and gives a more accurate rating for movies within genres.
+            </p>
+          </div>
         </div>
         {movieRows}
       </div>
