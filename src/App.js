@@ -129,7 +129,6 @@ class Movie extends React.Component {
       <div class='movie'>
         <a href={ 'https://imdb.com/title/' + this.props.movie.id}><img class='image' src={this.props.movie.posterPath}/></a>
         <p>{this.props.movie.title}</p>
-        <div class='imdbRating score'>{this.props.movie.rating}</div>
         <div class='genreScore score'>{genreAdjustedScore}</div>
       </div>
     )
