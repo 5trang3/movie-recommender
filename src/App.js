@@ -77,7 +77,7 @@ export class App extends React.Component {
             </select>
           </div>
           <div id='yearSelectionContainer'>
-            <p id='yearSelectionLabel'>Choose a Year:</p>
+            <label id='yearSelectionLabel'>Choose a Year:</label>
             <Calendar view='decade' maxDate={ new Date('2020') }  minDate={ new Date('1915') } className='calendar' value={ this.state.year } onClickYear={ this.handleYearChange }/>
           </div>
         </div>
