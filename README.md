@@ -2,10 +2,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Start the backend
 
-`cd backend`
+`cd backend`  
 `nodemon server`
 
 ## Start the app
 
-`cd ..`
+`cd ..`  
 `npm start`
