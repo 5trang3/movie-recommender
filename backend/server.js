@@ -9,7 +9,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Connect to db:
-mongoose.connect('mongodb+srv://admin:DruWH3arT@url-shortener-db-gbfnq.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://guest:px4415ZrhdEF6U0h@url-shortener-db-gbfnq.mongodb.net/test?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
