@@ -35,7 +35,7 @@ app.get('/api/movies', function(req, res) {
   genre ? filter.genres = genre : res.send('Missing genre information');
   Movie.find(filter)
        .then(function(movies) {
-         if (movies.length === 0) { res.send('No movies found') }
+         if (movies.length === 0) { res.json([[],[],[],[],[]]) }
          else {
            let movieArr = [[],[],[],[],[]]
            for (const movie of movies) {
