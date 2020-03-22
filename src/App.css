@@ -136,3 +136,7 @@ h2 {
 .react-calendar__navigation {
   margin-bottom: 1px;
 }
+
+.image:hover {
+  border: 5px solid #F76A8C
+}
