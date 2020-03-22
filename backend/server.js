@@ -45,8 +45,8 @@ app.get('/api/movies', function(req, res) {
                  rating = scoreObj[genre];
                }
              }
-               if (rating <= 10 && rating >= 8.5) { movieArr[0].push(movie); }
-               else if (rating < 8.5 && rating >= 7) { movieArr[1].push(movie); }
+               if (rating <= 10 && rating >= 8.6) { movieArr[0].push(movie); }
+               else if (rating < 8.6 && rating >= 7) { movieArr[1].push(movie); }
                else if (rating < 7 && rating >= 5) { movieArr[2].push(movie); }
                else if (rating < 5 && rating >= 3) { movieArr[3].push(movie); }
                else { movieArr[4].push(movie) }
