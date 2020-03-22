@@ -14,7 +14,7 @@ const imdbGenres = [
   'Drama',
   'Family',
   'Fantasy',
-  'Film Noir',
+  'Film-Noir',
   'History',
   'Horror',
   'Music',
@@ -22,9 +22,7 @@ const imdbGenres = [
   'Mystery',
   'Romance',
   'Sci-Fi',
-  'Short',
   'Sport',
-  'Superhero',
   'Thriller',
   'War',
   'Western'
