@@ -10,11 +10,11 @@ app.use(bodyParser.json());
 
 // Adds the react production build to serve react requests
 
-app.use(express.static(path.join(__dirname, “../client/build”)));
+app.use(express.static(path.join(__dirname, “../build”)));
 
 // React root
 
-app.get(“*”, (req, res) => {res.sendFile(path.join(__dirname + “../client/build/index.html”));});
+app.get(“*”, (req, res) => {res.sendFile(path.join(__dirname + “../build/index.html”));});
 
 // Connect to db:
 mongoose.connect('mongodb+srv://guest:px4415ZrhdEF6U0h@url-shortener-db-gbfnq.mongodb.net/test?retryWrites=true&w=majority', {
