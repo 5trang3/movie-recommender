@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
-const PORT = 4000;
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
+const PORT = process.env.PORT;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -13,7 +14,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../build')));
 
 // Connect to db:
-mongoose.connect('mongodb+srv://guest:px4415ZrhdEF6U0h@url-shortener-db-gbfnq.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://' + process.env.DB_USER + ':' + process.env.DB_PASS + process.env.DB_HOST, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
