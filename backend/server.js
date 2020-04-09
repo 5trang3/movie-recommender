@@ -3,18 +3,14 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const path = require('path');
 const PORT = 4000;
 
 app.use(cors());
 app.use(bodyParser.json());
-
 // Adds the react production build to serve react requests
 
-app.use(express.static(path.join(__dirname, “../build”)));
-
-// React root
-
-app.get(“*”, (req, res) => {res.sendFile(path.join(__dirname + “../build/index.html”));});
+app.use(express.static(path.join(__dirname, '../build')));
 
 // Connect to db:
 mongoose.connect('mongodb+srv://guest:px4415ZrhdEF6U0h@url-shortener-db-gbfnq.mongodb.net/test?retryWrites=true&w=majority', {
@@ -81,6 +77,10 @@ app.get('/api/movies', function(req, res) {
        })
        .catch(err => console.error(err))
 })
+
+// React root
+
+app.get('*', (req, res) => {res.sendFile(path.join(__dirname + '../build/index.html'));});
 
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);

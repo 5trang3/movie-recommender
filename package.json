@@ -15,8 +15,8 @@
     "superagent": "^5.2.2"
   },
   "scripts": {
-    "start": "cd backend && npm install && node index.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "start": "cd backend && npm install && nodemon server.js",
+    "heroku-postbuild": "npm install && npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
