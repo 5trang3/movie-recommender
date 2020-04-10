@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import './App.css';
 import Calendar from 'react-calendar';
 
+// Material-UI Imports:
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+
 const superagent = require('superagent')
 
 export class App extends React.Component {
@@ -69,26 +73,28 @@ export class App extends React.Component {
 
     return (
       <div id='app'>
-        <div id='options'>
-          <div id='genreDropdownContainer'>
-            <label id='genreDropdownLabel'>Choose a Genre:</label>
-            <select id='genreDropdown' value={this.state.genre} onChange={this.handleGenreChange} class='select-css'>
-              {genreOptions}
-            </select>
-          </div>
-          <div id='yearSelectionContainer'>
-            <label id='yearSelectionLabel'>Choose a Year:</label>
-            <Calendar view='decade' maxDate={ new Date('2020') }  minDate={ new Date('1915') } className='calendar' value={ this.state.year } onClickYear={ this.handleYearChange }/>
-          </div>
-          <div id='legend'>
-            <p>
-              The ratings in pink <div class='genreScore score'>S</div> are genre adjusted scores.
-              Ratings on IMDB are higher on average for some genres compared to others. Often this
-              is a reflection of reviewer biases against certain genres. This adjusted score normalizes
-              the data for these biases and gives a more accurate rating for movies within genres.
-            </p>
-          </div>
-        </div>
+        <AppBar>
+          <Toolbar>
+            <div id='genreDropdownContainer'>
+              <label id='genreDropdownLabel'>Choose a Genre:</label>
+              <select id='genreDropdown' value={this.state.genre} onChange={this.handleGenreChange} class='select-css'>
+                {genreOptions}
+              </select>
+            </div>
+            <div id='yearSelectionContainer'>
+              <label id='yearSelectionLabel'>Choose a Year:</label>
+              <Calendar view='decade' maxDate={ new Date('2020') }  minDate={ new Date('1915') } className='calendar' value={ this.state.year } onClickYear={ this.handleYearChange }/>
+            </div>
+            <div id='legend'>
+              <p>
+                The ratings in pink <div class='genreScore score'>S</div> are genre adjusted scores.
+                Ratings on IMDB are higher on average for some genres compared to others. Often this
+                is a reflection of reviewer biases against certain genres. This adjusted score normalizes
+                the data for these biases and gives a more accurate rating for movies within genres.
+              </p>
+            </div>
+          </Toolbar>
+        </AppBar>
         {movieRows}
       </div>
     )
