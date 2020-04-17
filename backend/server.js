@@ -1,23 +1,12 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '../.env') });
-const PORT = process.env.REACT_APP_PORT;
+const PORT = process.env.REACT_APP_PORT || 5000;
 
 app.use(bodyParser.json());
-
-// CORS options
-
-const corsOptions = {
-  origin: '*',
-  methods: 'GET,POST',
-  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept'
-}
-
-app.use(cors(corsOptions));
 
 // Adds the react production build to serve react requests
 
