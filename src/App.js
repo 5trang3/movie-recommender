@@ -5,6 +5,10 @@ import Calendar from 'react-calendar';
 
 const superagent = require('superagent')
 
+// Load host and port info:
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
+
 export class App extends React.Component {
   constructor(props) {
     super(props);
@@ -32,7 +36,7 @@ export class App extends React.Component {
   fetchMovies() {
     const year = this.state.year;
     const genre = this.state.genre;
-    superagent.get('http://127.0.0.1:4000/api/movies?year=' + year.getFullYear().toString() + '&genre=' + genre)
+    superagent.get(process.env.REACT_APP_HOST + process.env.REACT_APP_PORT + '/api/movies?year=' + year.getFullYear().toString() + '&genre=' + genre)
               .then((res) => {
                 this.setState({
                   movies: res.body

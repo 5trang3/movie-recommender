@@ -5,19 +5,19 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '../.env') });
-const PORT = process.env.PORT;
+const PORT = process.env.REACT_APP_PORT;
 
-app.use(cors());
 app.use(bodyParser.json());
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
+// CORS options
 
-app.options('*', cors());
+const corsOptions = {
+  origin: '*',
+  methods: 'GET,POST',
+  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept'
+}
+
+app.use(cors(corsOptions));
 
 // Adds the react production build to serve react requests
 
