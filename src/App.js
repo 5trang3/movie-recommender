@@ -3,9 +3,15 @@ import ReactDOM from 'react-dom';
 import './App.css';
 import Calendar from 'react-calendar';
 
-// Material-UI Imports:
+// Material-UI imports:
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import { makeStyles } from '@material-ui/core/styles';
 
 const superagent = require('superagent')
 
@@ -63,7 +69,7 @@ export class App extends React.Component {
   render() {
     // Get array of option elements for each genre
     const genreOptions = this.props.imdbGenres.map(function(genre) {
-      return <option value={genre}>{genre}</option>
+      return <MenuItem value={genre}>{genre}</MenuItem>
     })
 
     // Create array of movie rows:
@@ -75,12 +81,13 @@ export class App extends React.Component {
       <div id='app'>
         <AppBar>
           <Toolbar>
-            <div id='genreDropdownContainer'>
-              <label id='genreDropdownLabel'>Choose a Genre:</label>
-              <select id='genreDropdown' value={this.state.genre} onChange={this.handleGenreChange} class='select-css'>
-                {genreOptions}
-              </select>
-            </div>
+            <FormControl style={{ minWidth: 120 }} color='secondary'>
+              <InputLabel>Genre</InputLabel>
+              <Select labelId='genreSelectLabel' id='genreSelect' onChange={ this.handleGenreChange }>
+                { genreOptions }
+              </Select>
+              <FormHelperText>Select a genre</FormHelperText>
+            </FormControl>
             <div id='yearSelectionContainer'>
               <label id='yearSelectionLabel'>Choose a Year:</label>
               <Calendar view='decade' maxDate={ new Date('2020') }  minDate={ new Date('1915') } className='calendar' value={ this.state.year } onClickYear={ this.handleYearChange }/>
