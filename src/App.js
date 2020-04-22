@@ -12,6 +12,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import { makeStyles } from '@material-ui/core/styles';
+// import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
 
 const superagent = require('superagent')
 
@@ -83,7 +84,7 @@ export class App extends React.Component {
           <Toolbar>
             <FormControl style={{ minWidth: 120 }} color='secondary'>
               <InputLabel>Genre</InputLabel>
-              <Select labelId='genreSelectLabel' id='genreSelect' onChange={ this.handleGenreChange }>
+              <Select labelId='genreSelectLabel' id='genreSelect' onChange={ this.handleGenreChange } value={ this.state.genre }>
                 { genreOptions }
               </Select>
               <FormHelperText>Select a genre</FormHelperText>
