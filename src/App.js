@@ -12,7 +12,8 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import { makeStyles } from '@material-ui/core/styles';
-// import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
 const superagent = require('superagent')
 
@@ -89,10 +90,9 @@ export class App extends React.Component {
               </Select>
               <FormHelperText>Select a genre</FormHelperText>
             </FormControl>
-            <div id='yearSelectionContainer'>
-              <label id='yearSelectionLabel'>Choose a Year:</label>
-              <Calendar view='decade' maxDate={ new Date('2020') }  minDate={ new Date('1915') } className='calendar' value={ this.state.year } onClickYear={ this.handleYearChange }/>
-            </div>
+              <MuiPickersUtilsProvider utils={ DateFnsUtils }>
+                <KeyboardDatePicker format='yyyy' style={{ minWidth: 120 }} maxDate={ new Date('2020') } minDate={ new Date('1915') }label='Year' onChange={ this.handleYearChange } views={ ['year'] } value={ this.state.year}></KeyboardDatePicker>
+              </MuiPickersUtilsProvider>
             <div id='legend'>
               <p>
                 The ratings in pink <div class='genreScore score'>S</div> are genre adjusted scores.
