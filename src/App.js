@@ -11,6 +11,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
@@ -117,13 +120,13 @@ class MovieRow extends React.Component {
     const Movies = this.props.movies.map((movie) => <Movie movie={movie} genre={this.props.genre}></Movie>)
 
     return (
-      <div>
-        <h2 class='rowHeading'>{this.props.rowHeading}</h2>
-        <p class='subHeading'>{this.props.subHeading}</p>
-        <div id={this.props.id} class='movieRow'>
-          {Movies}
-        </div>
-      </div>
+      <Container>
+        <Typography>{ this.props.rowHeading }</Typography>
+        <Typography>{ this.props.subHeading }</Typography>
+        <Grid container spacing={3}>
+          { Movies }
+        </Grid>
+      </Container>
     )
   }
 }
@@ -140,11 +143,11 @@ class Movie extends React.Component {
       }
     }
     return(
-      <div class='movie'>
+      <Grid item lg={2}>
         <a href={ 'https://imdb.com/title/' + this.props.movie.id}><img class='image' src={this.props.movie.posterPath}/></a>
         <p>{this.props.movie.title}</p>
         <div class='genreScore score'>{genreAdjustedScore}</div>
-      </div>
+      </Grid>
     )
   }
 }
