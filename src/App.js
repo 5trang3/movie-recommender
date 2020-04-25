@@ -14,6 +14,11 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Rating from '@material-ui/lab/Rating';
+import Badge from '@material-ui/core/Badge'
 import { makeStyles } from '@material-ui/core/styles';
 import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
@@ -144,9 +149,18 @@ class Movie extends React.Component {
     }
     return(
       <Grid item lg={2}>
-        <a href={ 'https://imdb.com/title/' + this.props.movie.id}><img class='image' src={this.props.movie.posterPath}/></a>
-        <p>{this.props.movie.title}</p>
-        <div class='genreScore score'>{genreAdjustedScore}</div>
+        <Badge badgeContent={ genreAdjustedScore } color='primary'>
+        <Card>
+          <a href={ 'https://imdb.com/title/' + this.props.movie.id}>
+            <CardMedia image={ this.props.movie.posterPath } style={{ height: '278px'}}>
+            </CardMedia>
+          </a>
+          <CardContent style={{ textAlign: 'center' }}>
+            <Typography align='center' display='block' variant='subtitle2'>{this.props.movie.title}</Typography>
+            <Rating name='half-rating' defaultValue={ genreAdjustedScore / 2 } precision={ 0.5 } readOnly></Rating>
+          </CardContent>
+        </Card>
+      </Badge>
       </Grid>
     )
   }
