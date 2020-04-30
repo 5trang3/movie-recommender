@@ -156,7 +156,6 @@ class Movie extends React.Component {
           </a>
           <CardContent style={{ textAlign: 'center' }}>
             <Typography align='center' display='block' variant='subtitle2'>{this.props.movie.title}</Typography>
-            <Rating name='half-rating' defaultValue={ genreAdjustedScore / 2 } precision={ 0.5 } readOnly></Rating>
           </CardContent>
         </Card>
       </Grid>
