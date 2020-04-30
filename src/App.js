@@ -149,7 +149,6 @@ class Movie extends React.Component {
     }
     return(
       <Grid item lg={2}>
-        <Badge badgeContent={ genreAdjustedScore } color='primary'>
         <Card>
           <a href={ 'https://imdb.com/title/' + this.props.movie.id}>
             <CardMedia image={ this.props.movie.posterPath } style={{ height: '278px'}}>
@@ -160,7 +159,6 @@ class Movie extends React.Component {
             <Rating name='half-rating' defaultValue={ genreAdjustedScore / 2 } precision={ 0.5 } readOnly></Rating>
           </CardContent>
         </Card>
-      </Badge>
       </Grid>
     )
   }
