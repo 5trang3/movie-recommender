@@ -18,7 +18,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Rating from '@material-ui/lab/Rating';
-import Badge from '@material-ui/core/Badge'
+import Badge from '@material-ui/core/Badge';
+import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles';
 import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
@@ -128,9 +129,9 @@ class MovieRow extends React.Component {
       <Container>
         <Typography>{ this.props.rowHeading }</Typography>
         <Typography>{ this.props.subHeading }</Typography>
-        <Grid container spacing={3}>
-          { Movies }
-        </Grid>
+        <div class='grid'>
+          {Movies}
+        </div>
       </Container>
     )
   }
@@ -148,17 +149,14 @@ class Movie extends React.Component {
       }
     }
     return(
-      <Grid item lg={2}>
-        <Card>
-          <a href={ 'https://imdb.com/title/' + this.props.movie.id}>
-            <CardMedia image={ this.props.movie.posterPath } style={{ height: '278px'}}>
-            </CardMedia>
-          </a>
-          <CardContent style={{ textAlign: 'center' }}>
-            <Typography align='center' display='block' variant='subtitle2'>{this.props.movie.title}</Typography>
-          </CardContent>
-        </Card>
-      </Grid>
+        <Box class='grid-item' style={{ height: '350px', width: '185px' }}>
+          <Card>
+            <a href={ 'https://imdb.com/title/' + this.props.movie.id}>
+              <CardMedia image={ this.props.movie.posterPath } style={{ height: '278px', backgroundSize: 'contain'}}>
+              </CardMedia>
+            </a>
+          </Card>
+        </Box>
     )
   }
 }
