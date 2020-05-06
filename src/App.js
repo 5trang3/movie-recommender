@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-import Calendar from 'react-calendar';
 import Badge from './components/Badge.js'
+import SimplePopover from './components/SimplePopover.js'
 
 // Material-UI imports:
 import AppBar from '@material-ui/core/AppBar';
@@ -32,7 +32,7 @@ export class App extends React.Component {
     this.state = {
       genre: 'Action',
       year: new Date('2020'),
-      movies: [[],[],[],[],[]]
+      movies: [[],[],[],[],[]],
     };
     this.handleGenreChange = this.handleGenreChange.bind(this);
     this.handleYearChange = this.handleYearChange.bind(this);
@@ -99,17 +99,10 @@ export class App extends React.Component {
               </Select>
               <FormHelperText>Select a genre</FormHelperText>
             </FormControl>
-              <MuiPickersUtilsProvider utils={ DateFnsUtils }>
-                <KeyboardDatePicker format='yyyy' style={{ minWidth: 120 }} maxDate={ new Date('2020') } minDate={ new Date('1915') }label='Year' onChange={ this.handleYearChange } views={ ['year'] } value={ this.state.year}></KeyboardDatePicker>
-              </MuiPickersUtilsProvider>
-            <div id='legend'>
-              <p>
-                The ratings in pink <div class='genreScore score'>S</div> are genre adjusted scores.
-                Ratings on IMDB are higher on average for some genres compared to others. Often this
-                is a reflection of reviewer biases against certain genres. This adjusted score normalizes
-                the data for these biases and gives a more accurate rating for movies within genres.
-              </p>
-            </div>
+            <MuiPickersUtilsProvider utils={ DateFnsUtils }>
+              <KeyboardDatePicker format='yyyy' style={{ minWidth: 120 }} maxDate={ new Date('2020') } minDate={ new Date('1915') }label='Year' onChange={ this.handleYearChange } views={ ['year'] } value={ this.state.year}></KeyboardDatePicker>
+            </MuiPickersUtilsProvider>
+            <SimplePopover></SimplePopover>
           </Toolbar>
         </AppBar>
         {movieRows}
