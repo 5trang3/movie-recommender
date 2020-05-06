@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-import Badge from './components/Badge.js'
 import SimplePopover from './components/SimplePopover.js'
+import Movie from './components/Movie.js'
 
 // Material-UI imports:
 import AppBar from '@material-ui/core/AppBar';
@@ -15,9 +15,6 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles';
@@ -129,28 +126,3 @@ class MovieRow extends React.Component {
     )
   }
 }
-
-const Movie = (props) => {
-    let genreAdjustedScore;
-    for (const scoreObj of props.movie.genreAdjustedScores) {
-      if (scoreObj[props.genre]) {
-        genreAdjustedScore = scoreObj[props.genre]
-      }
-    }
-    return(
-        <Box class='grid-item' style={{ height: '450px', width: '185px' }}>
-          <Badge rating={ genreAdjustedScore }/>
-          <Card>
-            <a href={ 'https://imdb.com/title/' + props.movie.id}>
-              <CardMedia image={ props.movie.posterPath } style={{ height: '278px', backgroundSize: 'contain'}}>
-              </CardMedia>
-            </a>
-            <CardContent style={{ height: '70px'}}>
-              <Typography variant='subtitle1' style={{ textAlign: 'center' }}>
-                {props.movie.title}
-              </Typography>
-            </CardContent>
-          </Card>
-        </Box>
-    )
-  }
