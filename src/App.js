@@ -130,32 +130,27 @@ class MovieRow extends React.Component {
   }
 }
 
-class Movie extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
+const Movie = (props) => {
     let genreAdjustedScore;
-    for (const scoreObj of this.props.movie.genreAdjustedScores) {
-      if (scoreObj[this.props.genre]) {
-        genreAdjustedScore = scoreObj[this.props.genre]
+    for (const scoreObj of props.movie.genreAdjustedScores) {
+      if (scoreObj[props.genre]) {
+        genreAdjustedScore = scoreObj[props.genre]
       }
     }
     return(
         <Box class='grid-item' style={{ height: '450px', width: '185px' }}>
           <Badge rating={ genreAdjustedScore }/>
           <Card>
-            <a href={ 'https://imdb.com/title/' + this.props.movie.id}>
-              <CardMedia image={ this.props.movie.posterPath } style={{ height: '278px', backgroundSize: 'contain'}}>
+            <a href={ 'https://imdb.com/title/' + props.movie.id}>
+              <CardMedia image={ props.movie.posterPath } style={{ height: '278px', backgroundSize: 'contain'}}>
               </CardMedia>
             </a>
             <CardContent style={{ height: '70px'}}>
               <Typography variant='subtitle1' style={{ textAlign: 'center' }}>
-                {this.props.movie.title}
+                {props.movie.title}
               </Typography>
             </CardContent>
           </Card>
         </Box>
     )
   }
-}
