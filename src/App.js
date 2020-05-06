@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
 import Calendar from 'react-calendar';
+import Badge from './components/Badge.js'
 
 // Material-UI imports:
 import AppBar from '@material-ui/core/AppBar';
@@ -18,7 +19,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Rating from '@material-ui/lab/Rating';
-import Badge from '@material-ui/core/Badge';
 import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles';
 import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
@@ -149,12 +149,18 @@ class Movie extends React.Component {
       }
     }
     return(
-        <Box class='grid-item' style={{ height: '350px', width: '185px' }}>
+        <Box class='grid-item' style={{ height: '450px', width: '185px' }}>
+          <Badge rating={ genreAdjustedScore }/>
           <Card>
             <a href={ 'https://imdb.com/title/' + this.props.movie.id}>
               <CardMedia image={ this.props.movie.posterPath } style={{ height: '278px', backgroundSize: 'contain'}}>
               </CardMedia>
             </a>
+            <CardContent style={{ height: '70px'}}>
+              <Typography variant='subtitle1' style={{ textAlign: 'center' }}>
+                {this.props.movie.title}
+              </Typography>
+            </CardContent>
           </Card>
         </Box>
     )
