@@ -175,3 +175,9 @@ h2 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+@media all and (max-width: 450px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
