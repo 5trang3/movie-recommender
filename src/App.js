@@ -102,6 +102,7 @@ export class App extends React.Component {
             <SimplePopover></SimplePopover>
           </Toolbar>
         </AppBar>
+        <Toolbar/>
         {movieRows}
       </div>
     )
