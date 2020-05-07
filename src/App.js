@@ -117,8 +117,8 @@ class MovieRow extends React.Component {
 
     return (
       <Container>
-        <Typography>{ this.props.rowHeading }</Typography>
-        <Typography>{ this.props.subHeading }</Typography>
+        <Typography variant='h2'>{ this.props.rowHeading }</Typography>
+        <Typography variant='h3'>{ this.props.subHeading }</Typography>
         <div class='grid'>
           {Movies}
         </div>
