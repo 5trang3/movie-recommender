@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@material-ui/core/Box';
 import Badge from './Badge.js';
 import Card from '@material-ui/core/Card';
@@ -13,10 +13,11 @@ const Movie = (props) => {
         genreAdjustedScore = scoreObj[props.genre]
       }
     }
+    const [isRaised, toggleRaised] = useState(false);
     return(
         <Box class='grid-item' style={{ height: '450px', width: '185px' }}>
           <Badge rating={ genreAdjustedScore }/>
-          <Card>
+          <Card onMouseEnter={ () =>  toggleRaised (true) } onMouseLeave={ () =>  toggleRaised (false) } raised={ isRaised }>
             <a href={ 'https://imdb.com/title/' + props.movie.id}>
               <CardMedia image={ props.movie.posterPath } style={{ height: '278px', backgroundSize: 'contain'}}>
               </CardMedia>
