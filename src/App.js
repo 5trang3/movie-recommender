@@ -4,6 +4,7 @@ import './App.css';
 import SimplePopover from './components/SimplePopover.js'
 import Movie from './components/Movie.js'
 import Dropdown from './components/Dropdown.js'
+import DatePicker from './components/DatePicker.js'
 
 // Material-UI imports:
 import AppBar from '@material-ui/core/AppBar';
@@ -15,9 +16,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box'
-import { makeStyles } from '@material-ui/core/styles';
-import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
 
 const superagent = require('superagent')
 
@@ -88,9 +86,7 @@ export class App extends React.Component {
         <AppBar>
           <Toolbar>
             <Dropdown label='Genre' labelId='genreSelectLabel' id='genreSelect' handleChange={ this.handleGenreChange } value={ this.state.genre } options={ genreOptions }/>
-            <MuiPickersUtilsProvider utils={ DateFnsUtils }>
-              <KeyboardDatePicker format='yyyy' style={{ minWidth: 120 }} maxDate={ new Date('2020') } minDate={ new Date('1915') }label='Year' onChange={ this.handleYearChange } views={ ['year'] } value={ this.state.year}></KeyboardDatePicker>
-            </MuiPickersUtilsProvider>
+            <DatePicker format='yyyy' maxDate={ new Date('2020') } minDate={ new Date('1915') }label='Year' handleChange={ this.handleYearChange } views={ ['year'] } value={ this.state.year}/>
             <SimplePopover></SimplePopover>
           </Toolbar>
         </AppBar>
