@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
 import SimplePopover from './components/SimplePopover.js'
-import Movie from './components/Movie.js'
 import Dropdown from './components/Dropdown.js'
-import DatePicker from './components/DatePicker.js'
+import DatePicker from './components/DatePicker.js';
+import MovieRow from './components/MovieRow.js'
 
 // Material-UI imports:
 import AppBar from '@material-ui/core/AppBar';
@@ -15,7 +15,8 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Rating from '@material-ui/lab/Rating';
-import Box from '@material-ui/core/Box'
+import Box from '@material-ui/core/Box';
+import Divider from '@material-ui/core/Divider';
 
 const superagent = require('superagent')
 
@@ -93,25 +94,6 @@ export class App extends React.Component {
         <Toolbar/>
         {movieRows}
       </div>
-    )
-  }
-}
-
-class MovieRow extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    const Movies = this.props.movies.map((movie) => <Movie movie={movie} genre={this.props.genre}></Movie>)
-
-    return (
-      <Container>
-        <Typography variant='h2'>{ this.props.rowHeading }</Typography>
-        <Typography variant='h3'>{ this.props.subHeading }</Typography>
-        <div class='grid'>
-          {Movies}
-        </div>
-      </Container>
     )
   }
 }
