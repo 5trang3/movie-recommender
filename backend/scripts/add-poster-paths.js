@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const superagent = require('superagent');
-const tmdb_api_key = '';
-const password = '';
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../../.env') });
 
 // Connect to db:
-mongoose.connect('mongodb+srv://admin:<password>@url-shortener-db-gbfnq.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://' + process.env.DB_USER + ':' + process.env.DB_PASS + process.env.DB_HOST, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -31,7 +31,7 @@ const Movie = mongoose.model('Movie', new mongoose.Schema({
     else {
       for (const movie of results) {
         superagent.get('https://api.themoviedb.org/3/find/' + movie.id)
-                  .query({ api_key: tmdb_api_key, external_source: 'imdb_id' })
+                  .query({ api_key: process.env.TMDB_API_KEY, external_source: 'imdb_id' })
                   .then(response => {
                     if (response.body.movie_results[0].poster_path) {
                       movie.posterPath = 'https://image.tmdb.org/t/p/w185' + response.body.movie_results[0].poster_path;

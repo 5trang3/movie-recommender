@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
 import SimplePopover from './components/SimplePopover.js'
-import Movie from './components/Movie.js'
 import Dropdown from './components/Dropdown.js'
+import DatePicker from './components/DatePicker.js';
+import MovieRow from './components/MovieRow.js'
 
 // Material-UI imports:
 import AppBar from '@material-ui/core/AppBar';
@@ -13,10 +14,8 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Rating from '@material-ui/lab/Rating';
-import Box from '@material-ui/core/Box'
-import { makeStyles } from '@material-ui/core/styles';
-import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
+import Box from '@material-ui/core/Box';
+import Divider from '@material-ui/core/Divider';
 
 const superagent = require('superagent')
 
@@ -85,34 +84,13 @@ export class App extends React.Component {
         <AppBar>
           <Toolbar>
             <Dropdown label='Genre' labelId='genreSelectLabel' id='genreSelect' handleChange={ this.handleGenreChange } value={ this.state.genre } options={ genreOptions }/>
-            <MuiPickersUtilsProvider utils={ DateFnsUtils }>
-              <KeyboardDatePicker format='yyyy' style={{ minWidth: 120 }} maxDate={ new Date('2020') } minDate={ new Date('1915') }label='Year' onChange={ this.handleYearChange } views={ ['year'] } value={ this.state.year}></KeyboardDatePicker>
-            </MuiPickersUtilsProvider>
+            <DatePicker format='yyyy' maxDate={ new Date('2020') } minDate={ new Date('1915') }label='Year' handleChange={ this.handleYearChange } views={ ['year'] } value={ this.state.year}/>
             <SimplePopover></SimplePopover>
           </Toolbar>
         </AppBar>
         <Toolbar/>
         {movieRows}
       </div>
-    )
-  }
-}
-
-class MovieRow extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    const Movies = this.props.movies.map((movie) => <Movie movie={movie} genre={this.props.genre}></Movie>)
-
-    return (
-      <Container>
-        <Typography variant='h2'>{ this.props.rowHeading }</Typography>
-        <Typography variant='h3'>{ this.props.subHeading }</Typography>
-        <div class='grid'>
-          {Movies}
-        </div>
-      </Container>
     )
   }
 }
