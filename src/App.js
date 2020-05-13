@@ -16,7 +16,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
-import Divider from '@material-ui/core/Divider';
 
 const superagent = require('superagent')
 
