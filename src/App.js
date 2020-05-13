@@ -8,7 +8,6 @@ import Dropdown from './components/Dropdown.js'
 // Material-UI imports:
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -74,9 +73,7 @@ export class App extends React.Component {
 
   render() {
     // Get array of option elements for each genre
-    const genreOptions = this.props.imdbGenres.map(function(genre) {
-      return <MenuItem value={genre}>{genre}</MenuItem>
-    })
+    const genreOptions = this.props.imdbGenres
 
     // Create array of movie rows:
     const movieRows = this.props.rowHeadings.map((rowHeading, index) => {
