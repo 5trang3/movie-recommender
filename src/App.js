@@ -13,6 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
+import Alert from '@material-ui/lab/Alert';
 
 const superagent = require('superagent')
 
@@ -23,6 +24,7 @@ export class App extends React.Component {
       genre: 'Action',
       year: new Date('2020'),
       movies: [[],[],[],[],[]],
+      alerts: { noMoviesFound: 1 }
     };
     this.handleGenreChange = this.handleGenreChange.bind(this);
     this.handleYearChange = this.handleYearChange.bind(this);
@@ -45,8 +47,19 @@ export class App extends React.Component {
     const genre = this.state.genre;
     superagent.get('/api/movies?year=' + year.getFullYear().toString() + '&genre=' + genre)
               .then((res) => {
+                // Count the number of movies returned:
+                const numMovies = res.body.reduce(function(acc, cur) {
+                  return acc += cur.length;
+                }, 0);
+
+                // If no movies, create alert state:
+                const alerts = Object.assign(this.state.alerts, {});
+                alerts.noMoviesFound = numMovies ? 1 : 0;
+                
+                // Update state of movies and alerts:
                 this.setState({
-                  movies: res.body
+                  movies: res.body,
+                  alerts: alerts
                 })
               })
               .catch(err => console.error(err))
@@ -99,11 +112,16 @@ export class App extends React.Component {
       value: this.state.year
     }
 
+    // Create alerts:
+
+    const noMoviesFound = this.state.alerts.noMoviesFound ? null : <Alert severity='info'>There are no movies found matching your search parameters</Alert>
+
     return (
       <div id='app'>
         <Appbar dropdownOptions={ dropdownOptions } datepickerOptions={ datepickerOptions }/>
         <Toolbar/>
         {movieRows}
+        { noMoviesFound }
       </div>
     )
   }
