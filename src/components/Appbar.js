@@ -14,9 +14,16 @@ import Dropdown from './Dropdown.js'
 import DatePicker from './DatePicker.js';
 
 const Appbar = (props) => {
+  // Create styles:
+  const toolbarStyles = makeStyles({
+    root: {
+      justifyContent: 'space-between'
+    }
+  })
+  const toolbarClasses = toolbarStyles();
   return (
     <AppBar>
-      <Toolbar>
+      <Toolbar className={ toolbarClasses.root }>
         <div>
           <Dropdown label={ props.dropdownOptions.label } labelId={ props.dropdownOptions.labelId } id={ props.dropdownOptions.id } handleChange={ props.dropdownOptions.handleChange } value={ props.dropdownOptions.value } options={ props.dropdownOptions.options }/>
           <DatePicker format={ props.datepickerOptions.format } maxDate={ props.datepickerOptions.maxDate } minDate={ props.datepickerOptions.minDate } label={ props.datepickerOptions.label } handleChange={ props.datepickerOptions.handleChange } views={ props.datepickerOptions.views } value={ props.datepickerOptions.value }/>
