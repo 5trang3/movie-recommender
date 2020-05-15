@@ -2,12 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
 import SimplePopover from './components/SimplePopover.js'
-import Dropdown from './components/Dropdown.js'
-import DatePicker from './components/DatePicker.js';
 import MovieRow from './components/MovieRow.js'
+import Appbar from './components/Appbar.js'
 
 // Material-UI imports:
-import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Container from '@material-ui/core/Container';
@@ -78,15 +76,30 @@ export class App extends React.Component {
       return <MovieRow id={'movieRow-' + index} rowHeading={rowHeading} subHeading={this.props.subHeadings[index]} movies={this.state.movies[index]} genre={this.state.genre}/>
     })
 
+    // Create dropdown options:
+    const dropdownOptions = {
+      label:'Genre',
+      labelId:'genreSelectLabel',
+      id:'genreSelect',
+      handleChange: this.handleGenreChange,
+      value: this.state.genre,
+      options: genreOptions
+    }
+
+    // Create datepicker options:
+    const datepickerOptions = {
+      format: 'yyyy',
+      maxDate: new Date('2020'),
+      minDate: new Date('1915'),
+      label: 'Year',
+      handleChange: this.handleYearChange,
+      views: ['year'],
+      value: this.state.year
+    }
+
     return (
       <div id='app'>
-        <AppBar>
-          <Toolbar>
-            <Dropdown label='Genre' labelId='genreSelectLabel' id='genreSelect' handleChange={ this.handleGenreChange } value={ this.state.genre } options={ genreOptions }/>
-            <DatePicker format='yyyy' maxDate={ new Date('2020') } minDate={ new Date('1915') }label='Year' handleChange={ this.handleYearChange } views={ ['year'] } value={ this.state.year}/>
-            <SimplePopover></SimplePopover>
-          </Toolbar>
-        </AppBar>
+        <Appbar dropdownOptions={ dropdownOptions } datepickerOptions={ datepickerOptions }/>
         <Toolbar/>
         {movieRows}
       </div>
