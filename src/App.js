@@ -73,7 +73,9 @@ export class App extends React.Component {
 
     // Create array of movie rows:
     const movieRows = this.props.rowHeadings.map((rowHeading, index) => {
-      return <MovieRow id={'movieRow-' + index} rowHeading={rowHeading} subHeading={this.props.subHeadings[index]} movies={this.state.movies[index]} genre={this.state.genre}/>
+      return this.state.movies[index].length ?
+      <MovieRow id={'movieRow-' + index} rowHeading={rowHeading} subHeading={this.props.subHeadings[index]} movies={this.state.movies[index]} genre={this.state.genre}/> :
+      null
     })
 
     // Create dropdown options:
