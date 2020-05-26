@@ -29,7 +29,7 @@ const SimplePopover = () => {
 
   return (
     <div>
-      <Button aria-describedby={id} variant="contained" color="primary" onClick={handleClick} endIcon={<InfoOutlinedIcon />}>
+      <Button aria-describedby={id} variant="outlined" onClick={handleClick} endIcon={<InfoOutlinedIcon />}>
         Learn more about our ratings
       </Button>
       <Popover
