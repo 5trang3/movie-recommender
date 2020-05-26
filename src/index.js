@@ -1,6 +1,21 @@
 import ReactDOM from 'react-dom';
 import React from 'react'
 import {App} from './App.js';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#E58F65',
+    },
+    secondary: {
+      main: '#4EC5A7',
+    },
+    background: {
+      paper: '#FFFDE8'
+    },
+  },
+});
 
 // Array of IMDB genres:
 const imdbGenres = [
@@ -45,4 +60,7 @@ const subHeadings = [
   'Movies that may make you lose some brain cells'
 ]
 
-ReactDOM.render(<App imdbGenres={imdbGenres} rowHeadings={rowHeadings} subHeadings={subHeadings}/>, document.getElementById('root'))
+ReactDOM.render(
+  <ThemeProvider theme={ theme }>
+    <App imdbGenres={imdbGenres} rowHeadings={rowHeadings} subHeadings={subHeadings}/>
+  </ThemeProvider>, document.getElementById('root'))

@@ -24,7 +24,7 @@ const Badge = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   return (
-    <Box className={ classes.root } style={{ backgroundColor: theme.palette.primary.main, color: theme.palette.primary.contrastText }}>
+    <Box className={ classes.root } style={{ backgroundColor: theme.palette.secondary.main }}>
       <Typography>
        { props.rating }
       </Typography>
